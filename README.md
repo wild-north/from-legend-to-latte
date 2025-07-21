@@ -164,3 +164,4 @@ src/
 **Технології:** Next.js, TypeScript, Tailwind CSS  
 **Призначення:** Блог про каву для GitHub Pages
 Fixed deployment
+Trigger new deployment
