@@ -1,50 +1,39 @@
 # ☕ Coffee: From Legend to Latte
 
-Блог про каву, створений з використанням Next.js, TypeScript та Tailwind CSS.
+A coffee-focused blog built with Next.js, TypeScript, and Tailwind CSS, deployed on GitHub Pages.
 
-## 🎨 Варіанти дизайну
+## 🚀 Quick Start
 
-Проект містить 4 різні варіанти дизайну:
-
-1. **Елегантний мінімалізм** - М'який градієнт, чисті лінії, amber кольори
-2. **Сучасний і яскравий** - Смілі кольори, динамічні градієнти
-3. **Затишний вінтаж** - Теплі коричневі відтінки, serif шрифти
-4. **Мінімалістичний журнал** - Чистий білий фон, акцент на типографіці
-
-Переглянути всі дизайни можна на сторінці `/designs`.
-
-## 🚀 Швидкий старт
-
-### Встановлення залежностей
+### Install Dependencies
 ```bash
 npm install
 ```
 
-### Запуск сервера розробки
+### Run Development Server
 ```bash
 npm run dev
 ```
 
-Сайт буде доступний за адресою [http://localhost:3000](http://localhost:3000).
+The site will be available at [http://localhost:3000](http://localhost:3000).
 
-### Збірка для продакшна
+### Build for Production
 ```bash
 npm run build
 ```
 
-## 📦 Деплой на GitHub Pages
+## 📦 GitHub Pages Deployment
 
-### 1. Налаштування репозиторія
-1. Створи новий репозиторій на GitHub з назвою `from-legend-to-latte`
-2. Додай код до репозиторія:
+### 1. Repository Setup
+1. Create a new repository on GitHub named `from-legend-to-latte`
+2. Add your code to the repository:
 ```bash
 git remote add origin https://github.com/YOUR_USERNAME/from-legend-to-latte.git
 git branch -M main
 git push -u origin main
 ```
 
-### 2. Налаштування GitHub Actions
-Створи файл `.github/workflows/deploy.yml`:
+### 2. GitHub Actions Configuration
+The project includes `.github/workflows/deploy.yml` for automatic deployment:
 
 ```yaml
 name: Deploy to GitHub Pages
@@ -54,6 +43,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -81,87 +71,94 @@ jobs:
         publish_dir: ./out
 ```
 
-### 3. Налаштування в GitHub
-1. Перейди в `Settings` → `Pages`
-2. В розділі `Source` обери `Deploy from a branch`
-3. Обери гілку `gh-pages` та папку `/ (root)`
-4. Збережи налаштування
+### 3. GitHub Settings
+1. Go to `Settings` → `Actions` → `General`
+2. Set `Workflow permissions` to "Read and write permissions"
+3. Go to `Settings` → `Pages`
+4. Under `Source`, select `Deploy from a branch`
+5. Choose `gh-pages` branch and `/ (root)` folder
+6. Save the settings
 
-Після пушу код буде автоматично збиратися та деплоїтися на `https://YOUR_USERNAME.github.io/from-legend-to-latte/`.
+After pushing, your code will be automatically built and deployed to `https://YOUR_USERNAME.github.io/from-legend-to-latte/`.
 
-## 📝 Додавання нових статей
+## 📝 Adding New Articles
 
-Статті зберігаються в файлі `src/lib/blog.ts` в масиві `sampleArticles`. Для додавання нової статті:
+Articles are stored in `src/lib/blog.ts` in the `sampleArticles` array. To add a new article:
 
-1. Відкрий `src/lib/blog.ts`
-2. Додай новий об'єкт в масив `sampleArticles`:
+1. Open `src/lib/blog.ts`
+2. Add a new object to the `sampleArticles` array:
 
 ```typescript
 {
   slug: 'url-friendly-title',
-  title: 'Заголовок статті',
-  excerpt: 'Короткий опис статті...',
+  title: 'Article Title',
+  excerpt: 'Brief description of the article...',
   content: `<div class="prose prose-lg max-w-none">
-    <p>Тут твій HTML контент...</p>
+    <p>Your HTML content here...</p>
   </div>`,
   publishedAt: '2024-01-20',
-  author: 'Serhii',
+  author: 'Your Name',
   category: 'Category',
   tags: ['tag1', 'tag2'],
   readingTime: 5,
   featured: false,
-  coverImage: '/images/article-image.jpg'
+  coverImage: getImagePath('/images/article-image.jpg')
 }
 ```
 
-## 🛠 Технології
+## 🛠 Tech Stack
 
-- **Next.js 15** - React фреймворк з App Router
-- **TypeScript** - Статична типізація
-- **Tailwind CSS v4** - Utility-first CSS фреймворк
-- **@tailwindcss/typography** - Стилізація контенту
+- **Next.js 15** - React framework with App Router
+- **TypeScript** - Static type checking
+- **Tailwind CSS v4** - Utility-first CSS framework
+- **@tailwindcss/typography** - Content styling
 
-## 📁 Структура проекту
+## 📁 Project Structure
 
 ```
 src/
 ├── app/                    # Next.js App Router
-│   ├── designs/           # Сторінка з варіантами дизайну
-│   ├── articles/          # Список та окремі статті
-│   ├── about/             # Про блог
-│   └── layout.tsx         # Головний layout
-├── components/            # React компоненти
-│   ├── designs/           # 4 варіанти дизайну
-│   ├── Header.tsx         # Навігація
-│   └── ArticleCard.tsx    # Карточка статті
-├── lib/                   # Утиліти
-│   └── blog.ts           # Логіка блогу та статті
-└── types/                 # TypeScript типи
-    └── blog.ts           # Типи для блогу
+│   ├── articles/          # Article list and individual articles
+│   ├── about/             # About page
+│   └── layout.tsx         # Main layout
+├── components/            # React components
+│   ├── Header.tsx         # Navigation
+│   └── ArticleCard.tsx    # Article card component
+├── lib/                   # Utilities
+│   └── blog.ts           # Blog logic and articles
+└── types/                 # TypeScript types
+    └── blog.ts           # Blog-related types
 ```
 
-## 🎯 Функціонал
+## 🎯 Features
 
-- ✅ 4 різні дизайни на вибір
-- ✅ Статичний сайт для GitHub Pages
-- ✅ Адаптивний дизайн
-- ✅ TypeScript для надійності
-- ✅ SEO-оптимізація
-- ✅ Швидка навігація
-- ✅ Читабельна типографіка
+- ✅ Static site optimized for GitHub Pages
+- ✅ Responsive design
+- ✅ TypeScript for reliability
+- ✅ SEO optimization
+- ✅ Fast navigation
+- ✅ Readable typography
+- ✅ Image optimization with proper basePath handling
+- ✅ Active navigation highlighting
 
-## 🤝 Додавання контенту
+## 📷 Images
 
-Для додавання нового контенту можна:
-1. Редагувати файл `src/lib/blog.ts` напряму
-2. Додавати HTML контент у поле `content`
-3. Використовувати Markdown (потрібно буде додати парсер)
-4. Інтегрувати CMS (Contentful, Sanity тощо)
+Place images in the `public/images/` directory. The project uses a helper function `getImagePath()` to ensure proper image paths for GitHub Pages deployment.
+
+## 🤝 Content Management
+
+For adding new content, you can:
+1. Edit the `src/lib/blog.ts` file directly
+2. Add HTML content in the `content` field
+3. Integrate a Markdown parser (requires additional setup)
+4. Connect a headless CMS (Contentful, Sanity, etc.)
+
+## 🌍 Live Demo
+
+Visit the live site: [https://wild-north.github.io/from-legend-to-latte/](https://wild-north.github.io/from-legend-to-latte/)
 
 ---
 
-**Автор:** Serhii  
-**Технології:** Next.js, TypeScript, Tailwind CSS  
-**Призначення:** Блог про каву для GitHub Pages
-Fixed deployment
-Trigger new deployment
+**Author:** Serhii S.  
+**Technologies:** Next.js, TypeScript, Tailwind CSS  
+**Purpose:** Coffee blog for GitHub Pages deployment
