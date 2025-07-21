@@ -1,10 +1,23 @@
+'use client';
+
 import { getAllPosts } from '@/lib/blog';
 import Link from 'next/link';
 import { formatDate } from '@/lib/blog';
-import Image from 'next/image';
+import { FormattedMessage } from 'react-intl';
+import { useEffect, useState } from 'react';
+import { BlogMetadata } from '@/types/blog';
 
-export default async function ArticlesPage() {
-  const posts = await getAllPosts();
+export default function ArticlesPage() {
+  const [posts, setPosts] = useState<BlogMetadata[]>([]);
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      const allPosts = await getAllPosts();
+      setPosts(allPosts);
+    };
+    
+    loadPosts();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -12,11 +25,11 @@ export default async function ArticlesPage() {
         
         <header className="text-center mb-20 border-b border-gray-100 pb-20">
           <h1 className="text-6xl font-light text-gray-900 mb-8 tracking-tight">
-            ARTICLES
+            <FormattedMessage id="articles.title" />
           </h1>
           <div className="h-px bg-gray-300 w-24 mx-auto mb-8"></div>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed">
-            Досліджуйте нашу колекцію історій про каву, гайдів та інсайтів
+            <FormattedMessage id="articles.subtitle" />
           </p>
         </header>
 
@@ -32,7 +45,12 @@ export default async function ArticlesPage() {
                       {formatDate(article.publishedAt)}
                     </time>
                     <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                    <span className="text-gray-400">{article.readingTime} хв читання</span>
+                    <span className="text-gray-400">
+                      <FormattedMessage 
+                        id="articles.readingTime" 
+                        values={{ minutes: article.readingTime }}
+                      />
+                    </span>
                   </div>
                   
                   <h2 className="text-3xl font-light text-gray-900 leading-tight group-hover:text-gray-600 transition-colors">
@@ -46,7 +64,12 @@ export default async function ArticlesPage() {
                   </p>
                   
                   <div className="flex items-center justify-between pt-4">
-                    <span className="text-sm text-gray-400 uppercase tracking-wider">By {article.author}</span>
+                    <span className="text-sm text-gray-400 uppercase tracking-wider">
+                      <FormattedMessage 
+                        id="articles.by" 
+                        values={{ author: article.author }}
+                      />
+                    </span>
                     
                     <div className="flex flex-wrap gap-2">
                       {article.tags.slice(0, 3).map((tag) => (
@@ -81,7 +104,7 @@ export default async function ArticlesPage() {
         
         <div className="text-center mt-20 pt-16 border-t border-gray-100">
           <p className="text-sm text-gray-500 font-light">
-            Це всі наші статті на даний момент. Слідкуйте за новими публікаціями!
+            <FormattedMessage id="articles.allCurrent" />
           </p>
         </div>
       </div>

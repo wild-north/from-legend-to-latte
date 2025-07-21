@@ -1,10 +1,25 @@
+'use client';
+
 import { getAllPosts, getFeaturedPosts } from '@/lib/blog';
 import Link from 'next/link';
+import { FormattedMessage } from 'react-intl';
+import { useEffect, useState } from 'react';
+import { BlogMetadata } from '@/types/blog';
 
-export default async function Home() {
-  const featuredPosts = await getFeaturedPosts();
-  const allPosts = await getAllPosts();
-  const recentPosts = allPosts.slice(0, 6);
+export default function Home() {
+  const [featuredPosts, setFeaturedPosts] = useState<BlogMetadata[]>([]);
+  const [recentPosts, setRecentPosts] = useState<BlogMetadata[]>([]);
+
+  useEffect(() => {
+    const loadPosts = async () => {
+      const featured = await getFeaturedPosts();
+      const all = await getAllPosts();
+      setFeaturedPosts(featured);
+      setRecentPosts(all.slice(0, 6));
+    };
+    
+    loadPosts();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -25,14 +40,14 @@ export default async function Home() {
               From Legend to Latte
             </p>
             <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto font-light">
-              Курований збірник історій про перетин традицій, культури та майстерності у світі кави.
+              <FormattedMessage id="home.subtitle" />
             </p>
             <div className="mt-12">
               <Link
                 href="/articles"
                 className="inline-block text-sm uppercase tracking-widest border-b-2 border-gray-900 text-gray-900 hover:text-gray-600 hover:border-gray-600 transition-colors pb-1 font-medium"
               >
-                Читати статті
+                <FormattedMessage id="home.readArticles" />
               </Link>
             </div>
           </div>
@@ -40,7 +55,9 @@ export default async function Home() {
 
         <section className="py-24">
           <div className="mb-16">
-            <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2 font-medium">Рекомендовані</h2>
+            <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2 font-medium">
+              <FormattedMessage id="home.featured" />
+            </h2>
             <div className="h-px bg-gray-200 w-full"></div>
           </div>
           <div className="space-y-16">
@@ -52,7 +69,12 @@ export default async function Home() {
                       <div className="flex items-center gap-4 text-sm">
                         <span className="text-gray-400 uppercase tracking-wider">{article.category}</span>
                         <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                        <span className="text-gray-400">{article.readingTime} хв</span>
+                        <span className="text-gray-400">
+                          <FormattedMessage 
+                            id="common.readingTime" 
+                            values={{ minutes: article.readingTime }}
+                          />
+                        </span>
                       </div>
                       <h3 className="text-4xl font-light text-gray-900 leading-tight group-hover:text-gray-600 transition-colors">
                         <Link href={`/articles/${article.slug}`}>
@@ -63,12 +85,17 @@ export default async function Home() {
                         {article.excerpt}
                       </p>
                       <div className="flex items-center justify-between pt-4">
-                        <span className="text-sm text-gray-400 uppercase tracking-wider">By {article.author}</span>
+                        <span className="text-sm text-gray-400 uppercase tracking-wider">
+                          <FormattedMessage 
+                            id="articles.by" 
+                            values={{ author: article.author }}
+                          />
+                        </span>
                         <Link
                           href={`/articles/${article.slug}`}
                           className="text-sm uppercase tracking-widest border-b border-gray-900 text-gray-900 hover:text-gray-600 hover:border-gray-600 transition-colors pb-1"
                         >
-                          Читати далі
+                          <FormattedMessage id="home.readMore" />
                         </Link>
                       </div>
                     </div>
@@ -95,14 +122,16 @@ export default async function Home() {
         <section className="py-24 border-t border-gray-100">
           <div className="flex items-center justify-between mb-16">
             <div>
-              <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2 font-medium">Останні</h2>
+              <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2 font-medium">
+                <FormattedMessage id="home.latest" />
+              </h2>
               <div className="h-px bg-gray-200 w-32"></div>
             </div>
             <Link
               href="/articles"
               className="text-sm uppercase tracking-widest border-b border-gray-900 text-gray-900 hover:text-gray-600 hover:border-gray-600 transition-colors pb-1"
             >
-              Всі статті
+              <FormattedMessage id="home.allArticles" />
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -125,7 +154,12 @@ export default async function Home() {
                   <div className="flex items-center gap-3 text-xs">
                     <span className="text-gray-400 uppercase tracking-wider">{article.category}</span>
                     <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                    <span className="text-gray-400">{article.readingTime} хв</span>
+                    <span className="text-gray-400">
+                      <FormattedMessage 
+                        id="common.readingTime" 
+                        values={{ minutes: article.readingTime }}
+                      />
+                    </span>
                   </div>
                   <h3 className="text-xl font-light text-gray-900 leading-tight group-hover:text-gray-600 transition-colors">
                     <Link href={`/articles/${article.slug}`}>
@@ -136,7 +170,12 @@ export default async function Home() {
                     {article.excerpt}
                   </p>
                   <div className="pt-2">
-                    <span className="text-xs text-gray-400 uppercase tracking-wider">By {article.author}</span>
+                    <span className="text-xs text-gray-400 uppercase tracking-wider">
+                      <FormattedMessage 
+                        id="articles.by" 
+                        values={{ author: article.author }}
+                      />
+                    </span>
                   </div>
                 </div>
               </article>
@@ -150,10 +189,10 @@ export default async function Home() {
               <span className="text-white text-sm">☕</span>
             </div>
             <p className="text-xs uppercase tracking-widest text-gray-400">
-              Coffee: From Legend to Latte
+              <FormattedMessage id="home.footer.tagline" />
             </p>
             <p className="text-sm text-gray-500 max-w-md mx-auto">
-              Святкуємо мистецтво, науку та культуру кави через вдумливе оповідання.
+              <FormattedMessage id="home.footer.description" />
             </p>
           </div>
         </footer>

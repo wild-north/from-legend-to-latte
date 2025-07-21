@@ -1,0 +1,44 @@
+{
+  "nav.home": "Home",
+  "nav.articles": "Articles",
+  "nav.about": "About",
+  
+  "home.subtitle": "A curated collection of stories about the intersection of tradition, culture, and craftsmanship in the world of coffee.",
+  "home.readArticles": "Read Articles",
+  "home.featured": "Featured",
+  "home.latest": "Latest",
+  "home.allArticles": "All Articles",
+  "home.readMore": "Read More",
+  "home.footer.tagline": "Coffee: From Legend to Latte",
+  "home.footer.description": "Celebrating the art, science, and culture of coffee through thoughtful storytelling.",
+  
+  "articles.title": "Articles",
+  "articles.subtitle": "Explore our collection of coffee stories, guides, and insights",
+  "articles.readingTime": "{minutes} min read",
+  "articles.allCurrent": "These are all our articles at the moment. Stay tuned for new publications!",
+  "articles.by": "By {author}",
+  
+  "article.backToAll": "← All Articles",
+  "article.readingTime": "{minutes} min read",
+  "article.likedArticle": "Liked the article?",
+  "article.exploreMore": "Explore more coffee stories and guides",
+  "article.readMoreArticles": "Read More Articles",
+  "article.by": "By {author}",
+  
+  "about.title": "About",
+  "about.ourStory": "Our Story",
+  "about.welcome": "Welcome to <strong>Coffee: From Legend to Latte</strong> – a blog dedicated to exploring the rich tapestry of coffee culture. From the ancient legends of the goat herder Kaldi in the Ethiopian highlands to the sophisticated espresso bars of modern cities, we celebrate every chapter of coffee's remarkable journey.",
+  "about.whatWeCover": "What We Cover",
+  "about.history.title": "History",
+  "about.history.description": "Delve into coffee's fascinating origins and its spread across continents.",
+  "about.culture.title": "Culture",
+  "about.culture.description": "Explore how different cultures have embraced and transformed coffee traditions.",
+  "about.innovation.title": "Innovation",
+  "about.innovation.description": "Stay updated on the latest developments in specialty coffee and brewing innovations.",
+  "about.mission": "We believe every cup of coffee tells a story. Our mission is to share these stories – from the farmers who carefully tend their crops to the baristas who craft the perfect brew, from ancient rituals to modern techniques.",
+  "about.community": "Coffee is best when shared. We invite you to join our growing community of coffee enthusiasts as we explore this incredible world together, one article at a time.",
+  "about.startJourney": "Start your coffee journey with our recommended articles",
+  "about.exploreArticles": "Explore Articles",
+  
+  "common.readingTime": "{minutes} min"
+} 

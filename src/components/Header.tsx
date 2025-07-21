@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { FormattedMessage } from 'react-intl';
 
 export default function Header() {
   const pathname = usePathname();
@@ -23,35 +24,35 @@ export default function Header() {
             </Link>
           </div>
           <nav className="hidden md:flex space-x-12">
-            <Link 
-              href="/" 
+            <Link
+              href="/"
               className={`text-sm uppercase tracking-widest transition-colors pb-1 ${
-                isActive('/') 
-                  ? 'text-gray-900 border-b border-gray-900' 
+                isActive('/')
+                  ? 'text-gray-900 border-b border-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              Home
+              <FormattedMessage id="nav.home" />
             </Link>
-            <Link 
-              href="/articles" 
+            <Link
+              href="/articles"
               className={`text-sm uppercase tracking-widest transition-colors pb-1 ${
-                isActive('/articles') 
-                  ? 'text-gray-900 border-b border-gray-900' 
+                isActive('/articles')
+                  ? 'text-gray-900 border-b border-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              Articles
+              <FormattedMessage id="nav.articles" />
             </Link>
-            <Link 
-              href="/about" 
+            <Link
+              href="/about"
               className={`text-sm uppercase tracking-widest transition-colors pb-1 ${
-                isActive('/about') 
-                  ? 'text-gray-900 border-b border-gray-900' 
+                isActive('/about')
+                  ? 'text-gray-900 border-b border-gray-900'
                   : 'text-gray-600 hover:text-gray-900'
               }`}
             >
-              About
+              <FormattedMessage id="nav.about" />
             </Link>
           </nav>
         </div>

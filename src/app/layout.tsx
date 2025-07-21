@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/Header";
+import IntlProvider from "@/components/IntlProvider";
 
 export const metadata: Metadata = {
   title: "Coffee: From Legend to Latte",
-  description: "A blog about coffee culture, history, and brewing techniques",
+  description: "A curated collection of stories about coffee culture, history, and craftsmanship.",
 };
 
 export default function RootLayout({
@@ -15,10 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-white min-h-screen font-light">
-        <Header />
-        <main>
-          {children}
-        </main>
+        <IntlProvider>
+          <Header />
+          <main>
+            {children}
+          </main>
+        </IntlProvider>
       </body>
     </html>
   );
