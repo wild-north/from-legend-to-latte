@@ -31,6 +31,10 @@ jobs:
         ls -la
         echo "Contents of out directory:"
         ls -la out/
+        echo "Checking images directory:"
+        ls -la out/images/ || echo "No images directory found"
+        echo "Checking public/images directory:"
+        ls -la public/images/ || echo "No public/images directory found"
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
