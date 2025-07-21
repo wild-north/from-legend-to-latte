@@ -73,10 +73,18 @@ export default async function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className={`bg-gray-100 aspect-[4/3] rounded-sm ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <span className="text-4xl">☕</span>
-                    </div>
+                  <div className={`bg-gray-100 aspect-[4/3] rounded-sm overflow-hidden ${index % 2 === 1 ? 'lg:col-start-1' : ''}`}>
+                    {article.coverImage ? (
+                      <img 
+                        src={article.coverImage} 
+                        alt={article.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        <span className="text-4xl">☕</span>
+                      </div>
+                    )}
                   </div>
                 </div>
               </article>
@@ -101,10 +109,18 @@ export default async function Home() {
             {recentPosts.map((article) => (
               <article key={article.slug} className="group">
                 <div className="space-y-4">
-                  <div className="bg-gray-100 aspect-[4/3] rounded-sm mb-4">
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <span className="text-2xl">☕</span>
-                    </div>
+                  <div className="bg-gray-100 aspect-[4/3] rounded-sm mb-4 overflow-hidden">
+                    {article.coverImage ? (
+                      <img 
+                        src={article.coverImage} 
+                        alt={article.title}
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        <span className="text-2xl">☕</span>
+                      </div>
+                    )}
                   </div>
                   <div className="flex items-center gap-3 text-xs">
                     <span className="text-gray-400 uppercase tracking-wider">{article.category}</span>

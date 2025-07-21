@@ -1,6 +1,7 @@
 import { getAllPosts } from '@/lib/blog';
 import Link from 'next/link';
 import { formatDate } from '@/lib/blog';
+import Image from 'next/image';
 
 export default async function ArticlesPage() {
   const posts = await getAllPosts();
@@ -60,10 +61,18 @@ export default async function ArticlesPage() {
                   </div>
                 </div>
                 
-                <div className="bg-gray-100 aspect-[4/3] rounded-sm">
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                    <span className="text-3xl">☕</span>
-                  </div>
+                <div className="bg-gray-100 aspect-[4/3] rounded-sm overflow-hidden">
+                  {article.coverImage ? (
+                    <img 
+                      src={article.coverImage} 
+                      alt={article.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-400">
+                      <span className="text-3xl">☕</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </article>

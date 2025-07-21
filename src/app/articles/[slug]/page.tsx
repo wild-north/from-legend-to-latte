@@ -77,6 +77,18 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
           </header>
 
+          {post.coverImage && (
+            <div className="mb-16">
+              <div className="bg-gray-100 aspect-[16/9] rounded-sm overflow-hidden">
+                <img 
+                  src={post.coverImage} 
+                  alt={post.title}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          )}
+
           <div 
             className="prose prose-xl max-w-none prose-headings:font-light prose-headings:text-gray-900 prose-p:text-gray-600 prose-p:font-light prose-p:leading-relaxed prose-a:text-gray-900 prose-a:border-b prose-a:border-gray-300 prose-a:no-underline hover:prose-a:border-gray-900"
             dangerouslySetInnerHTML={{ __html: post.content }}
