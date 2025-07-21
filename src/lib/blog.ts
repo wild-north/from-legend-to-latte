@@ -1,5 +1,10 @@
 import { BlogPost, BlogMetadata } from '@/types/blog';
 
+function getImagePath(imagePath: string): string {
+  const basePath = process.env.NODE_ENV === 'production' ? '/from-legend-to-latte' : '';
+  return `${basePath}${imagePath}`;
+}
+
 export function calculateReadingTime(content: string): number {
   const wordsPerMinute = 200;
   const words = content.split(/\s+/).length;
@@ -47,7 +52,7 @@ export const sampleArticles: BlogPost[] = [
     tags: ['історія', 'легенди', 'ефіопія', 'поширення'],
     readingTime: 8,
     featured: true,
-    coverImage: '/images/coffee-history-cairo.jpg'
+    coverImage: getImagePath('/images/coffee-history-cairo.jpg')
   },
   {
     slug: 'espresso-history-italian-legend',
@@ -82,7 +87,7 @@ export const sampleArticles: BlogPost[] = [
     tags: ['еспресо', 'італія', 'технології', 'винаходи'],
     readingTime: 7,
     featured: true,
-    coverImage: '/images/espresso-machine-vintage.jpg'
+    coverImage: getImagePath('/images/espresso-machine-vintage.jpg')
   },
   {
     slug: 'coffee-harvesting-processing-types',
@@ -118,7 +123,7 @@ export const sampleArticles: BlogPost[] = [
     tags: ['збір', 'обробка', 'фермерство', 'технології'],
     readingTime: 6,
     featured: false,
-    coverImage: '/images/coffee-harvesting.jpg'
+    coverImage: getImagePath('/images/coffee-harvesting.jpg')
   },
   {
     slug: 'bean-journey-local-roasters',
@@ -154,7 +159,7 @@ export const sampleArticles: BlogPost[] = [
     tags: ['торгівля', 'логістика', 'specialty', 'справедливість'],
     readingTime: 5,
     featured: false,
-    coverImage: '/images/coffee-bags-warehouse.jpg'
+    coverImage: getImagePath('/images/coffee-bags-warehouse.jpg')
   },
   {
     slug: 'coffee-roasting-types-profiles',
@@ -191,7 +196,7 @@ export const sampleArticles: BlogPost[] = [
     tags: ['обсмажка', 'профіль', 'смак', 'техніка'],
     readingTime: 6,
     featured: false,
-    coverImage: '/images/coffee-roasting-beans.jpg'
+    coverImage: getImagePath('/images/coffee-roasting-beans.jpg')
   },
   {
     slug: 'espresso-based-drinks-recipes',
@@ -236,7 +241,7 @@ export const sampleArticles: BlogPost[] = [
     tags: ['еспресо', 'рецепти', 'молоко', 'техніка'],
     readingTime: 8,
     featured: true,
-    coverImage: '/images/espresso-drinks-variety.jpg'
+    coverImage: getImagePath('/images/espresso-drinks-variety.jpg')
   },
   {
     slug: 'alternative-coffee-brewing-methods',
@@ -278,7 +283,7 @@ export const sampleArticles: BlogPost[] = [
     tags: ['альтернативні методи', 'v60', 'chemex', 'френч-прес'],
     readingTime: 9,
     featured: false,
-    coverImage: '/images/alternative-brewing-equipment.jpg'
+    coverImage: getImagePath('/images/alternative-brewing-equipment.jpg')
   },
   {
     slug: 'coffee-influence-culture-art',
@@ -322,7 +327,7 @@ export const sampleArticles: BlogPost[] = [
     tags: ['культура', 'мистецтво', 'література', 'суспільство'],
     readingTime: 10,
     featured: true,
-    coverImage: '/images/van-gogh-cafe-terrace.jpg'
+    coverImage: getImagePath('/images/van-gogh-cafe-terrace.jpg')
   }
 ];
 
