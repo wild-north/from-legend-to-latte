@@ -1,11 +1,13 @@
-import { getAllPosts, getFeaturedPosts } from '@/lib/blog';
+import { BlogMetadata } from '@/types/blog';
+import ArticleCard from '@/components/ArticleCard';
 import Link from 'next/link';
 
-export default async function Home() {
-  const featuredPosts = await getFeaturedPosts();
-  const allPosts = await getAllPosts();
-  const recentPosts = allPosts.slice(0, 6);
+interface Design4Props {
+  featuredPosts: BlogMetadata[];
+  recentPosts: BlogMetadata[];
+}
 
+export default function Design4({ featuredPosts, recentPosts }: Design4Props) {
   return (
     <div className="min-h-screen bg-white">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -25,14 +27,15 @@ export default async function Home() {
               From Legend to Latte
             </p>
             <p className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto font-light">
-              Курований збірник історій про перетин традицій, культури та майстерності у світі кави.
+              A curated collection of stories exploring the intersection of tradition, culture, 
+              and craftsmanship in the world of coffee.
             </p>
             <div className="mt-12">
               <Link
                 href="/articles"
                 className="inline-block text-sm uppercase tracking-widest border-b-2 border-gray-900 text-gray-900 hover:text-gray-600 hover:border-gray-600 transition-colors pb-1 font-medium"
               >
-                Читати статті
+                Read Articles
               </Link>
             </div>
           </div>
@@ -40,7 +43,7 @@ export default async function Home() {
 
         <section className="py-24">
           <div className="mb-16">
-            <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2 font-medium">Рекомендовані</h2>
+            <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2 font-medium">Featured</h2>
             <div className="h-px bg-gray-200 w-full"></div>
           </div>
           <div className="space-y-16">
@@ -52,7 +55,7 @@ export default async function Home() {
                       <div className="flex items-center gap-4 text-sm">
                         <span className="text-gray-400 uppercase tracking-wider">{article.category}</span>
                         <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                        <span className="text-gray-400">{article.readingTime} хв</span>
+                        <span className="text-gray-400">{article.readingTime} min</span>
                       </div>
                       <h3 className="text-4xl font-light text-gray-900 leading-tight group-hover:text-gray-600 transition-colors">
                         <Link href={`/articles/${article.slug}`}>
@@ -68,7 +71,7 @@ export default async function Home() {
                           href={`/articles/${article.slug}`}
                           className="text-sm uppercase tracking-widest border-b border-gray-900 text-gray-900 hover:text-gray-600 hover:border-gray-600 transition-colors pb-1"
                         >
-                          Читати далі
+                          Read More
                         </Link>
                       </div>
                     </div>
@@ -87,14 +90,14 @@ export default async function Home() {
         <section className="py-24 border-t border-gray-100">
           <div className="flex items-center justify-between mb-16">
             <div>
-              <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2 font-medium">Останні</h2>
+              <h2 className="text-sm uppercase tracking-widest text-gray-500 mb-2 font-medium">Latest</h2>
               <div className="h-px bg-gray-200 w-32"></div>
             </div>
             <Link
               href="/articles"
               className="text-sm uppercase tracking-widest border-b border-gray-900 text-gray-900 hover:text-gray-600 hover:border-gray-600 transition-colors pb-1"
             >
-              Всі статті
+              View All
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
@@ -109,7 +112,7 @@ export default async function Home() {
                   <div className="flex items-center gap-3 text-xs">
                     <span className="text-gray-400 uppercase tracking-wider">{article.category}</span>
                     <span className="w-1 h-1 bg-gray-400 rounded-full"></span>
-                    <span className="text-gray-400">{article.readingTime} хв</span>
+                    <span className="text-gray-400">{article.readingTime} min</span>
                   </div>
                   <h3 className="text-xl font-light text-gray-900 leading-tight group-hover:text-gray-600 transition-colors">
                     <Link href={`/articles/${article.slug}`}>
@@ -137,11 +140,11 @@ export default async function Home() {
               Coffee: From Legend to Latte
             </p>
             <p className="text-sm text-gray-500 max-w-md mx-auto">
-              Святкуємо мистецтво, науку та культуру кави через вдумливе оповідання.
+              Celebrating the art, science, and culture of coffee through thoughtful storytelling.
             </p>
           </div>
         </footer>
       </div>
     </div>
   );
-}
+} 
